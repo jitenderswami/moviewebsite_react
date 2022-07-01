@@ -1,38 +1,105 @@
-.App {
-  text-align: center;
+
+:root{
+  --darkcolor: #17181B;
+  --lightcolor:#202124;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.movieApp{
+  color: whitesmoke;
+  background-color: var(--darkcolor);
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.searchbar{
+  padding:1rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  /* justify-content: flex-end; */
+  background-color: var(--lightcolor);
+}
+.search{
+  width: 40%;
+  max-width: 450px;
+  background-color: transparent;
+  border: 2px solid var(--darkcolor) ;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-size: 1 rem;
   color: white;
+  font-family: inherit;
 }
 
-.App-link {
-  color: #61dafb;
+.search:focus{
+  outline:0;
+  background-color: var(--darkcolor);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+
+.movielist{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movie {
+  width: 300px;
+  margin: 1rem;
+  border-radius: 5px;
+  box-shadow: 0.2px 4px 5px rgba(0,0,0,2);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+
+.movie:hover{
+  transform: scale(1.1);
+}
+
+.movie_info{
+  position: absolute;
+  left:0;
+  right:0;
+  bottom: 0;
+  border-radius:5px;
+  background-color: var(--lightcolor);
+  max-height: 100%;
+  transform: translateY(101%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.movie:hover .movie_info{
+  transform: translateY(0);
+}
+
+.movietitle {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem 0 1rem;
+  letter-spacing: 0.5px;
+
+}
+
+.movietitle h3{
+  margin: 0;
+}
+
+.movietitle span{
+  background-color: var(--darkcolor);
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  font-weight: bold;
+  align-self: center;
+}
+
+.movie_info p{
+  margin: 0;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+}
+
+
+
+
+img{
+  border-radius: 5px;
+  width: 100%;
+  height: 300px;
 }
