@@ -1,13 +1,16 @@
 import React  from 'react';
 import { useState,useEffect} from 'react';
 import './App.css';
+import { Routes, Route } from "react-router-dom";
 import Searchbar from './Components/Searchbar';
 import Movielist from './Components/Movielist';
+import Moviedetails from './Components/Moviedetails';
 
 function App() {
 
   const [movies,setMovies] = useState([])
   const [query,setQuery] = useState("")
+  const[movieShow, setMovieShow] = useState(null)
 
 useEffect(() =>{
   fetchMovies(query)
@@ -32,8 +35,24 @@ useEffect(() =>{
   
   return (
     <div className="movieApp">
-      <Searchbar query={query} setQuery={setQuery}/>
-      <Movielist movies={movies} />
+      <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Searchbar query={query} setQuery={setQuery}/>
+                <Movielist movies={movies} setMovieShow = {setMovieShow}/>
+              </>
+            }></Route>
+          <Route 
+            path="/movie/moredetails" 
+            element={
+                  <Moviedetails movieShow={movieShow}/>
+                }>
+              
+            
+            </Route>
+        </Routes>
     </div>
   );
 }

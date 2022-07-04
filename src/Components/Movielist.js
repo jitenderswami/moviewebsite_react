@@ -1,10 +1,10 @@
 import Movie from "./Movie"
 
-function Movielist({movies}) {
+function Movielist({movies,setMovieShow}) {
   return (
     <div className='movielist'>
         {movies.map((movie) => (
-            <Movie key={movie.id} movie={movie} />
+            <Movie key={movie.id} movie={movie} setMovieShow = {setMovieShow} />
         ))}
     </div>
   )

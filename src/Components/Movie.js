@@ -1,11 +1,10 @@
-import React from 'react'
+import { Link} from 'react-router-dom'
+import { useContext } from 'react';
 
 
+const Movie = ({movie,setMovieShow}) => {
 
-const Movie = ({movie}) => {
-
-
-    const{title,vote_average,backdrop_path,poster_path,vote_count} = movie;
+    const{title,vote_average,poster_path,vote_count} = movie;
 
     const path = "https://image.tmdb.org/t/p/original" + poster_path;
 
@@ -37,9 +36,10 @@ const Movie = ({movie}) => {
                 <span style={divstyle}>{vote_average}</span>
                 <span>Votes:{" "}{vote_count}</span>
             </div>
-            <div className="more_detail">
-                <a href="">More details</a>
-            </div>
+                <Link to='/movie/moredetails' className="more_detail"><p onClick={()=>setMovieShow(movie)}>More details</p>
+                </Link>
+                {/* <Link to='https://www.youtube.com/watch?v=9Bvt6BFf6_U' className="more_detail"><p>More details</p>
+                </Link> */}
         </div>
     </div>
   )

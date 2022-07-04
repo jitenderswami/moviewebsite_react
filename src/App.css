@@ -100,28 +100,76 @@
 
 
 .more_detail{
+  text-decoration: none;
   display: flex;
   background-color: var(--darkcolor);
-  margin: 0.5rem 1rem 0;
-  /* padding: 0.25rem; */
+  margin: 1rem 1rem;
+  
   border-radius: 5px;
   font-weight: bold;
   justify-content: center;
   /* align-self: center; */
 }
 
-.more_detail a{
-  margin: 0.5rem 0 ;
-  text-decoration: none;
+.more_detail p{
+  
   color: whitesmoke;
+  margin: 0;
+  padding: 0.5rem 0 0.5rem;
+}
+.more_detail :hover{
+  color: rgb(119, 119, 255);
 }
 
-.more_detail a:hover{
-  color: rgb(71, 71, 255);
+.btn{
+  color: whitesmoke;
+  height: max-content;
+  margin-top: 10px;
+  width: 100px;
+  position: fixed;
+  top: 10px;
+  left: 20px;
+  background-color: var(--lightcolor);
+  border-radius: 15px;
+  padding: 5px 0;
 }
-
 
 img{
   border-radius: 5px;
   width: 100%;
+}
+
+
+.img-bg {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0.1;
+  object-fit: cover;
+}
+
+.details{
+  margin-top: 50px;
+  padding: 20px;
+}
+
+.details h4 {
+  margin: 0;
+  color: hsl(223, 36%, 92%);
+}
+
+.details p {
+  width: 50%;
+  color: hsl(223, 36%, 82%);
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+
+#rate {
+  color: yellow;
+
+  border-radius: 15px;
+  width: max-content;
 }
