@@ -1,6 +1,9 @@
-import {useState} from 'react'
+import { useGlobalContext } from "./Context";
 
-function Searchbar({query, setQuery}) {
+  
+function Searchbar() {
+
+  const {query,setQuery} = useGlobalContext()
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -11,7 +14,7 @@ function Searchbar({query, setQuery}) {
         <input
           value={query} 
           onChange = {(e) => setQuery(e.target.value)}
-          class ="search" 
+          className ="search" 
           id='search' 
           type="text" 
           placeholder='Search...'/>

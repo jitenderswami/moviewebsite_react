@@ -1,45 +1,41 @@
 import { Link} from 'react-router-dom'
-import { useContext } from 'react';
+import { useGlobalContext } from "./Context";
 
 
-const Movie = ({movie,setMovieShow}) => {
+const Movie = ({movie}) => {
 
-    const{title,vote_average,poster_path,vote_count} = movie;
+    const {setMovieShow} = useGlobalContext()
+
+    const{id,title,vote_average,poster_path,vote_count} = movie;
 
     const path = "https://image.tmdb.org/t/p/original" + poster_path;
 
 
-    let rcolor
+    let span_class
 
     if(vote_average >= 8){
-        rcolor = "green"
+        span_class = "green"
     }
     else if(vote_average >= 6){
-        rcolor = "orange"
+        span_class = "orange"
     } else {
-        rcolor = "red"
+        span_class = "red"
     }
 
-    const divstyle = {
-        color : rcolor
-    }
 
 
   return (
     <div className="movie">
-        <img src={path} alt="" />
+        <img src={path} alt={title} />
         <div className="movie_info">
             <div className="movietitle">
                 <h3>{title}</h3>
             </div>
             <div className="rating">
-                <span style={divstyle}>{vote_average}</span>
+                <span className={span_class}>{vote_average}</span>
                 <span>Votes:{" "}{vote_count}</span>
             </div>
-                <Link to='/movie/moredetails' className="more_detail"><p onClick={()=>setMovieShow(movie)}>More details</p>
-                </Link>
-                {/* <Link to='https://www.youtube.com/watch?v=9Bvt6BFf6_U' className="more_detail"><p>More details</p>
-                </Link> */}
+                <Link to= {`/movie/${id}`} className="more_detail"><p onClick={()=>setMovieShow(movie)}>More details</p> </Link>
         </div>
     </div>
   )
