@@ -9,8 +9,11 @@ const AppProvider = ({ children }) => {
     const [movieShow, setMovieShow] = useState(null)
 
     useEffect(() => {
-
-        fetchMovies(query)
+        let timer = setTimeout(() => {
+            fetchMovies(query);
+        }, 800);
+        
+        return () => clearTimeout(timer);
     
     },[query])
 

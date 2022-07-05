@@ -12,7 +12,7 @@ function Searchbar() {
   return (
     <form onSubmit={onSubmit} className='searchbar'>
         <input
-          value={query} 
+          value= {query}
           onChange = {(e) => setQuery(e.target.value)}
           className ="search" 
           id='search' 
