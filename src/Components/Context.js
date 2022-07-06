@@ -40,6 +40,7 @@ const AppProvider = ({ children }) => {
 
 
     const fetchMovies = async () => {
+        
         if(query){
         const url = `${SEARCH_URL}&page=${pageNumber}&query=${query}`
         const res = await fetch(url)
@@ -49,17 +50,21 @@ const AppProvider = ({ children }) => {
         } else{
             setMovies(prevData => [...prevData, ...data.results])
         }
-        
         }
+
         else{
         const url = `${MOVIE_URL}${pageNumber}`
         const res = await fetch(url)
         const data = await res.json()
-        setMovies(prevData => [...prevData, ...data.results])
+        if(pageNumber===1){
+            setMovies(data.results)
+        } else{
+            setMovies(prevData => [...prevData, ...data.results])
+        }
         }
     }
 
-    return (<AppContext.Provider value={{ movieShow, setMovieShow, movies, query, setQuery, isLoading, lastMovieCardRef }}>
+    return (<AppContext.Provider value={{ movieShow, setMovieShow, movies, query, setQuery, isLoading, lastMovieCardRef, setpageNumber}}>
             {children}
         </AppContext.Provider>);
 }
