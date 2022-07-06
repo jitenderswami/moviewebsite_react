@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useRef, useCallback} from "react";
-const SEARCH_URL = "https://api.themoviedb.org/3/search/movie?api_key=55903b004b65252bf433fb4218601d2c&language=en-US&sort_by=popularity.desc&page=1&vote_average.gte=8.4&query="
+const SEARCH_URL = "https://api.themoviedb.org/3/search/movie?api_key=55903b004b65252bf433fb4218601d2c&language=en-US&sort_by=popularity.desc"
 const MOVIE_URL = 'https://api.themoviedb.org/3/discover/movie?api_key=55903b004b65252bf433fb4218601d2c&language=en-US&sort_by=popularity.desc&page='
 
 const AppContext = React.createContext()
@@ -24,7 +24,7 @@ const AppProvider = ({ children }) => {
 
         if(node) observer.current.observe(node)
 
-    })
+    },[isLoading])
 
     useEffect(() => {
         setisLoading(true)
@@ -41,19 +41,22 @@ const AppProvider = ({ children }) => {
 
     const fetchMovies = async () => {
         if(query){
-        const url = `${SEARCH_URL}+${query}`
+        const url = `${SEARCH_URL}&page=${pageNumber}&query=${query}`
         const res = await fetch(url)
         const data = await res.json()
-        setMovies(data.results)
+        if(pageNumber===1){
+            setMovies(data.results)
+        } else{
+            setMovies(prevData => [...prevData, ...data.results])
+        }
         
         }
         else{
-        const url = `${MOVIE_URL}+${pageNumber}`
+        const url = `${MOVIE_URL}${pageNumber}`
         const res = await fetch(url)
         const data = await res.json()
         setMovies(prevData => [...prevData, ...data.results])
         }
-        setisLoading(false)
     }
 
     return (<AppContext.Provider value={{ movieShow, setMovieShow, movies, query, setQuery, isLoading, lastMovieCardRef }}>

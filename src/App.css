@@ -112,7 +112,8 @@
 .loading{
   position: absolute;
   right: 45%;
-  margin-top: 5px;
+  margin-top: 20px;
+  margin-bottom: 50px;
   padding: 5px;
   width: 200px;
   height: max-content;

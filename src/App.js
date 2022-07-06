@@ -19,9 +19,10 @@ function App() {
               <>
                 <Searchbar />
                 <Movielist />
-                <div className='loading'>{isLoading && "Loading..."}</div>
+                {isLoading && <div className='loading'> Loading...</div>}
               </>
-            }></Route>
+            }>
+          </Route>
           <Route 
             path={`/movie/:id`}
             element={
