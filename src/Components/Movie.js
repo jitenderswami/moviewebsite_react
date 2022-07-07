@@ -1,65 +1,37 @@
+import React from "react";
 import { Link} from 'react-router-dom'
 import { useGlobalContext } from "./Context";
+import { BACK_POSTER_PATH } from '../util/API';
+import votecolor from '../util/votecolor';
 
 
 const Movie = ({movie,index}) => {
 
     const {movies,setMovieShow,lastMovieCardRef} = useGlobalContext()
-
     const{id,title,vote_average,poster_path,vote_count} = movie;
+    
+    const path = BACK_POSTER_PATH + poster_path;
 
-    const path = "https://image.tmdb.org/t/p/original" + poster_path;
+    let reference
 
-
-    let span_class
-
-    if(vote_average >= 8){
-        span_class = "green"
-    }
-    else if(vote_average >= 6){
-        span_class = "orange"
-    } else {
-        span_class = "red"
-    }
+    {movies.length === index+1 ? (reference = lastMovieCardRef) : (reference = null)}
 
 
-    if(movies.length === index+1){
-        console.log(title)
-        return (
-            <div ref={lastMovieCardRef} className="movie">
-                <img src={path} alt={title} />
-                <div className="movie_info">
-                    <div className="movietitle">
-                        <h3>{title}</h3>
-                    </div>
-                    <div className="rating">
-                        <span className={span_class}>{vote_average}</span>
-                        <span>Votes:{" "}{vote_count}</span>
-                    </div>
-                        <Link to= {`/movie/${id}`} className="more_detail"><p onClick={()=>setMovieShow(movie)}>More details</p> </Link>
+    return(
+        <div ref={reference} className="movie">
+            <img src={path} alt={title} />
+            <div className="movie_info">
+                <div className="movietitle">
+                    <h3>{title}</h3>
                 </div>
-            </div>
-          )
-
-    } else {
-
-        return (
-            <div  className="movie">
-                <img src={path} alt={title} />
-                <div className="movie_info">
-                    <div className="movietitle">
-                        <h3>{title}</h3>
-                    </div>
-                    <div className="rating">
-                        <span className={span_class}>{vote_average}</span>
-                        <span>Votes:{" "}{vote_count}</span>
-                    </div>
-                        <Link to= {`/movie/${id}`} className="more_detail"><p onClick={()=>setMovieShow(movie)}>More details</p> </Link>
+                <div className="rating">
+                    <span className={votecolor(vote_average)}>{vote_average}</span>
+                    <span>Votes:{" "}{vote_count}</span>
                 </div>
+                    <Link to= {`/movie/${id}`} className="more_detail"><p onClick={()=>setMovieShow(movie)}>More details</p> </Link>
             </div>
-          )
-
-    }
+        </div>
+    )
   
 }
 
