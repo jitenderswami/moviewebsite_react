@@ -24,6 +24,7 @@ const Movie = ({movie,index}) => {
 
 
     if(movies.length === index+1){
+        console.log(title)
         return (
             <div ref={lastMovieCardRef} className="movie">
                 <img src={path} alt={title} />

@@ -12,8 +12,9 @@ const AppProvider = ({ children }) => {
     const [pageNumber,setpageNumber] = useState(1)
 
     const observer = useRef()
-    const lastMovieCardRef = useCallback(node =>{
+    const lastMovieCardRef = (node) =>{
         if(isLoading) return
+        console.log("returned")
         if(observer.current) observer.current.disconnect()
         observer.current = new IntersectionObserver(entries => {
             if(entries[0].isIntersecting){
@@ -24,9 +25,11 @@ const AppProvider = ({ children }) => {
 
         if(node) observer.current.observe(node)
 
-    },[isLoading])
+    }
 
     useEffect(() => {
+        console.log("inUseeffect",query,pageNumber);
+
         setisLoading(true)
         let timer = setTimeout(() => {
             fetchMovies();
