@@ -109,7 +109,21 @@
   color: red;
 }
 
-
+.loading{
+  position: absolute;
+  right: 45%;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  padding: 5px;
+  width: 200px;
+  height: max-content;
+  border-radius: 10px;
+  background-color: var(--lightcolor);
+  align-self: center;
+  color: whitesmoke;
+  text-align: center;
+  font-weight: bold;
+}
 .more_detail{
   text-decoration: none;
   display: flex;
