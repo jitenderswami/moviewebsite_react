@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState, useRef, useCallback} from "react";
-const SEARCH_URL = "https://api.themoviedb.org/3/search/movie?api_key=55903b004b65252bf433fb4218601d2c&language=en-US&sort_by=popularity.desc"
-const MOVIE_URL = 'https://api.themoviedb.org/3/discover/movie?api_key=55903b004b65252bf433fb4218601d2c&language=en-US&sort_by=popularity.desc&page='
+import { SEARCH_URL,MOVIE_URL } from "../util/API";
 
 const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
@@ -13,16 +12,24 @@ const AppProvider = ({ children }) => {
 
     const observer = useRef()
     const lastMovieCardRef = useCallback(node =>{
+        console.log("returned");
         if(isLoading) return
+
         if(observer.current) observer.current.disconnect()
+
         observer.current = new IntersectionObserver(entries => {
             if(entries[0].isIntersecting){
                 setpageNumber(prevPage => prevPage + 1)
+                console.log(entries[0].target)
             }
 
+        },{
+            threshold : 1
         })
 
-        if(node) observer.current.observe(node)
+
+        if(node) {
+            observer.current.observe(node)}
 
     },[isLoading])
 
@@ -54,6 +61,7 @@ const AppProvider = ({ children }) => {
         } else{
             setMovies(prevData => [...prevData, ...data.results])
         }
+        console.log(movies.length)
     }
 
     return (<AppContext.Provider value={{ movieShow, setMovieShow, movies, query, setQuery, isLoading, lastMovieCardRef, setpageNumber}}>
