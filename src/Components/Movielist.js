@@ -5,8 +5,8 @@ function Movielist() {
     const{movies} = useGlobalContext()
   return (
     <div className='movielist'>
-        {movies.map((movie) => (
-            <Movie key={movie.id} movie ={movie} />
+        {movies.map((movie,index) => (
+             <Movie index = {index} key={movie.id} movie ={movie} />
         ))}
     </div>
   )
